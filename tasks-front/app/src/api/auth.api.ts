@@ -18,31 +18,25 @@ export type RegisterPayload = {
     password_confirmation: string
 }
 
-export async function getCsrfCookie() {
-    await api.get('/sanctum/csrf-cookie', {
-        baseURL: 'http://api-tasks.test',
-    })
+export type LoginResponse = {
+    message: string
+    user: AuthUser
+    token: string
+    token_type: string
 }
-
 
 export const AuthAPI = {
     async login(payload: LoginPayload) {
-        await getCsrfCookie()
-
         const { data } = await api.post('/api/login', payload)
-        return data as { message: string; user: AuthUser }
+        return data as LoginResponse
     },
 
     async register(payload: RegisterPayload) {
-        await getCsrfCookie()
-
         const { data } = await api.post('/api/register', payload)
         return data as { message: string }
     },
 
     async logout() {
-        await getCsrfCookie()
-
         const { data } = await api.post('/api/logout')
         return data
     },

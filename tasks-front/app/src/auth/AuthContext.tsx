@@ -8,6 +8,7 @@ import {
   type ReactNode,
 } from 'react'
 import { AuthAPI, type AuthUser, type LoginPayload } from '../api/auth.api'
+import { authToken } from '../api/axios'
 
 type AuthContextType = {
   user: AuthUser | null
@@ -25,6 +26,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [loading, setLoading] = useState(true)
 
   const refreshUser = useCallback(async () => {
+    if (!authToken.get()) {
+      setUser(null)
+      setLoading(false)
+      return
+    }
+
     setLoading(true)
     try {
       const me = await AuthAPI.me()
@@ -38,12 +45,17 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const login = useCallback(async (payload: LoginPayload) => {
     const response = await AuthAPI.login(payload)
+    authToken.set(response.token)
     setUser(response.user)
   }, [])
 
   const logout = useCallback(async () => {
-    await AuthAPI.logout()
-    setUser(null)
+    try {
+      await AuthAPI.logout()
+    } finally {
+      authToken.clear()
+      setUser(null)
+    }
   }, [])
 
   useEffect(() => {
