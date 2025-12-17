@@ -50,32 +50,27 @@ export function Home() {
         <button
           style={{
             border: 'none',
-            padding: '0.1rem 0.45rem',   
+            height: '50px',              
+            padding: '0 8px',            
             borderRadius: '999px',
             background: 'linear-gradient(135deg, #2563eb, #7c3aed)',
             color: '#fff',
             fontWeight: 600,
-            fontSize: '0.6rem',          
+            fontSize: '0.6rem',
             cursor: 'pointer',
-            letterSpacing: '0.015em',
-            boxShadow: '0 3px 6px -5px rgba(124, 58, 237, 0.45)', 
-            lineHeight: 1.1,           
+            letterSpacing: '0.02em',
+            display: 'inline-flex',      
+            alignItems: 'center',        
+            justifyContent: 'center',
+            lineHeight: '22px',          
+            boxShadow: '0 3px 6px -5px rgba(124, 58, 237, 0.45)',
             transition: 'transform 0.15s ease, box-shadow 0.2s ease',
           }}
           onClick={() => setCreateOpen(true)}
-          onMouseEnter={(event) => {
-            event.currentTarget.style.transform = 'translateY(-0.5px)'
-            event.currentTarget.style.boxShadow =
-              '0 4px 8px -6px rgba(37, 99, 235, 0.4)'
-          }}
-          onMouseLeave={(event) => {
-            event.currentTarget.style.transform = ''
-            event.currentTarget.style.boxShadow =
-              '0 3px 6px -5px rgba(124, 58, 237, 0.45)'
-          }}
         >
           + Nova tarefa
         </button>
+
 
       </header>
 
