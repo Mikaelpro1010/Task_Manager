@@ -50,31 +50,33 @@ export function Home() {
         <button
           style={{
             border: 'none',
-            padding: '0.3rem 0.9rem',
+            padding: '0.1rem 0.45rem',   
             borderRadius: '999px',
             background: 'linear-gradient(135deg, #2563eb, #7c3aed)',
             color: '#fff',
             fontWeight: 600,
-            fontSize: '0.8rem',
+            fontSize: '0.6rem',          
             cursor: 'pointer',
-            letterSpacing: '0.02em',
-            boxShadow: '0 6px 12px -8px rgba(124, 58, 237, 0.55)',
+            letterSpacing: '0.015em',
+            boxShadow: '0 3px 6px -5px rgba(124, 58, 237, 0.45)', 
+            lineHeight: 1.1,           
             transition: 'transform 0.15s ease, box-shadow 0.2s ease',
           }}
           onClick={() => setCreateOpen(true)}
-            onMouseEnter={(event) => {
-              event.currentTarget.style.transform = 'translateY(-1px)'
-              event.currentTarget.style.boxShadow =
-              '0 10px 20px -10px rgba(37, 99, 235, 0.4)'
-            }}
-            onMouseLeave={(event) => {
-              event.currentTarget.style.transform = ''
-              event.currentTarget.style.boxShadow =
-              '0 6px 12px -8px rgba(124, 58, 237, 0.55)'
-            }}
+          onMouseEnter={(event) => {
+            event.currentTarget.style.transform = 'translateY(-0.5px)'
+            event.currentTarget.style.boxShadow =
+              '0 4px 8px -6px rgba(37, 99, 235, 0.4)'
+          }}
+          onMouseLeave={(event) => {
+            event.currentTarget.style.transform = ''
+            event.currentTarget.style.boxShadow =
+              '0 3px 6px -5px rgba(124, 58, 237, 0.45)'
+          }}
         >
           + Nova tarefa
         </button>
+
       </header>
 
       {loading ? (
