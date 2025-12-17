@@ -46,14 +46,20 @@ class AuthController extends Controller
 
         Auth::guard('web')->login($user);
 
+        $user->tokens()->delete();
+        $token = $user->createToken('api-token')->plainTextToken;
+
         return response()->json([
             'message' => 'Login realizado com sucesso',
             'user' => $user,
+            'token' => $token,
+            'token_type' => 'Bearer',
         ]);
     }
 
     public function logout(Request $request)
     {
+        $request->user()?->currentAccessToken()?->delete();
         Auth::guard('web')->logout();
 
         $request->session()->invalidate();
