@@ -47,7 +47,34 @@ export function Home() {
     <div style={{ padding: '2rem' }}>
       <header style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '1.5rem' }}>
         <h1>Minhas Tarefas</h1>
-        <button onClick={() => setCreateOpen(true)}>+ Nova tarefa</button>
+        <button
+          style={{
+            border: 'none',
+            padding: '0.3rem 0.9rem',
+            borderRadius: '999px',
+            background: 'linear-gradient(135deg, #2563eb, #7c3aed)',
+            color: '#fff',
+            fontWeight: 600,
+            fontSize: '0.8rem',
+            cursor: 'pointer',
+            letterSpacing: '0.02em',
+            boxShadow: '0 6px 12px -8px rgba(124, 58, 237, 0.55)',
+            transition: 'transform 0.15s ease, box-shadow 0.2s ease',
+          }}
+          onClick={() => setCreateOpen(true)}
+            onMouseEnter={(event) => {
+              event.currentTarget.style.transform = 'translateY(-1px)'
+              event.currentTarget.style.boxShadow =
+              '0 10px 20px -10px rgba(37, 99, 235, 0.4)'
+            }}
+            onMouseLeave={(event) => {
+              event.currentTarget.style.transform = ''
+              event.currentTarget.style.boxShadow =
+              '0 6px 12px -8px rgba(124, 58, 237, 0.55)'
+            }}
+        >
+          + Nova tarefa
+        </button>
       </header>
 
       {loading ? (
@@ -76,8 +103,52 @@ export function Home() {
               </div>
 
               <div style={{ display: 'flex', gap: '0.5rem' }}>
-                <button onClick={() => setEditTask(task)}>Editar</button>
-                <button onClick={() => setDeleteTask(task)}>Excluir</button>
+                <button
+                  style={{
+                    border: 'none',
+                    padding: '0.5rem 1.25rem',
+                    borderRadius: '999px',
+                    background: 'rgba(37, 99, 235, 0.12)',
+                    color: '#1d4ed8',
+                    fontWeight: 600,
+                    cursor: 'pointer',
+                    transition: 'background-color 0.2s ease, transform 0.15s',
+                  }}
+                  onClick={() => setEditTask(task)}
+                  onMouseEnter={(event) => {
+                    event.currentTarget.style.background = 'rgba(37, 99, 235, 0.2)'
+                    event.currentTarget.style.transform = 'translateY(-1px)'
+                  }}
+                  onMouseLeave={(event) => {
+                    event.currentTarget.style.background = 'rgba(37, 99, 235, 0.12)'
+                    event.currentTarget.style.transform = ''
+                  }}
+                >
+                  Editar
+                </button>
+                <button
+                  style={{
+                    border: 'none',
+                    padding: '0.5rem 1.25rem',
+                    borderRadius: '999px',
+                    background: 'rgba(239, 68, 68, 0.14)',
+                    color: '#b91c1c',
+                    fontWeight: 600,
+                    cursor: 'pointer',
+                    transition: 'background-color 0.2s ease, transform 0.15s',
+                  }}
+                  onClick={() => setDeleteTask(task)}
+                  onMouseEnter={(event) => {
+                    event.currentTarget.style.background = 'rgba(220, 38, 38, 0.22)'
+                    event.currentTarget.style.transform = 'translateY(-1px)'
+                  }}
+                  onMouseLeave={(event) => {
+                    event.currentTarget.style.background = 'rgba(239, 68, 68, 0.14)'
+                    event.currentTarget.style.transform = ''
+                  }}
+                >
+                  Excluir
+                </button>
               </div>
             </li>
           ))}
